@@ -1,76 +1,408 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Reel Creator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 30px;
-      background: #f5f5f5;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Reel Creator</title>
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-    }
+<style>
+*{
+  box-sizing:border-box;
+}
 
-    h1 {
-      text-align: center;
-    }
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:linear-gradient(135deg,#f5f7ff,#ffffff);
+  color:#222;
+}
 
-    textarea {
-      width: 100%;
-      height: 120px;
-      padding: 12px;
-      margin: 10px 0;
-      box-sizing: border-box;
-    }
+.header{
+  background:#111827;
+  color:white;
+  padding:25px 20px;
+  text-align:center;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      background: #222;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-  </style>
+.header h1{
+  margin:0;
+  font-size:30px;
+}
+
+.header p{
+  margin:8px 0 0;
+  color:#cbd5e1;
+}
+
+.container{
+  max-width:850px;
+  margin:25px auto;
+  padding:20px;
+}
+
+.card{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 8px 30px rgba(0,0,0,.08);
+  margin-bottom:20px;
+}
+
+h2{
+  margin-top:0;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-top:15px;
+  margin-bottom:7px;
+}
+
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #d1d5db;
+  border-radius:10px;
+  font-size:16px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+button{
+  border:0;
+  border-radius:10px;
+  padding:14px 18px;
+  font-size:16px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.generate{
+  width:100%;
+  margin-top:20px;
+  background:#111827;
+  color:white;
+}
+
+.generate:hover{
+  background:#374151;
+}
+
+.output{
+  margin-top:15px;
+}
+
+.output-box{
+  background:#f8fafc;
+  border:1px solid #e2e8f0;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:15px;
+}
+
+.output-box h3{
+  margin-top:0;
+}
+
+.copy{
+  background:#e5e7eb;
+  color:#111827;
+  padding:8px 12px;
+  font-size:14px;
+  margin-top:8px;
+}
+
+.footer{
+  text-align:center;
+  padding:25px;
+  color:#64748b;
+}
+
+@media(max-width:650px){
+  .row{
+    grid-template-columns:1fr;
+  }
+
+  .container{
+    padding:12px;
+  }
+
+  .card{
+    padding:18px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>AI Reel Creator</h1>
 
-    <p>Create your Reel idea with AI.</p>
+<div class="header">
+  <h1>🎬 AI Reel Creator</h1>
+  <p>Create Reel Script • Image Prompt • Video Prompt • SEO</p>
+</div>
 
-    <textarea id="prompt" placeholder="Enter your Reel idea..."></textarea>
+<div class="container">
 
-    <button onclick="createReel()">Create Reel Idea</button>
+<div class="card">
 
-    <h3>Result</h3>
-    <p id="result"></p>
-  </div>
+<h2>🚀 Create Your Reel</h2>
 
-  <script>
-    function createReel() {
-      const prompt = document.getElementById("prompt").value;
+<label>Reel Topic</label>
+<input id="topic" placeholder="Example: Mysterious fort at midnight">
 
-      if (!prompt) {
-        document.getElementById("result").innerText =
-          "Please enter a Reel idea.";
-        return;
-      }
+<label>Character / Main Subject</label>
+<input id="character" placeholder="Example: Beautiful AI female creator">
 
-      document.getElementById("result").innerText =
-        "Your Reel idea: " + prompt;
-    }
-  </script>
+<div class="row">
+
+<div>
+<label>Platform</label>
+<select id="platform">
+<option>Instagram</option>
+<option>YouTube Shorts</option>
+<option>Facebook Reels</option>
+<option>YouTube</option>
+</select>
+</div>
+
+<div>
+<label>Duration</label>
+<select id="duration">
+<option>15 seconds</option>
+<option>20 seconds</option>
+<option>30 seconds</option>
+<option>45 seconds</option>
+<option>60 seconds</option>
+</select>
+</div>
+
+</div>
+
+<div class="row">
+
+<div>
+<label>Language</label>
+<select id="language">
+<option>Marathi</option>
+<option>Hindi</option>
+<option>English</option>
+<option>Marathi + English</option>
+<option>Hindi + English</option>
+</select>
+</div>
+
+<div>
+<label>Style</label>
+<select id="style">
+<option>Cinematic</option>
+<option>Mystery</option>
+<option>Viral</option>
+<option>Luxury</option>
+<option>Travel</option>
+<option>Dance</option>
+<option>Historical</option>
+</select>
+</div>
+
+</div>
+
+<label>Extra Instructions</label>
+<textarea id="extra" placeholder="Example: Strong hook, cinematic visuals, no presenter face"></textarea>
+
+<button class="generate" onclick="generateReel()">
+✨ GENERATE AI REEL CONTENT
+</button>
+
+</div>
+
+
+<div class="card output">
+
+<h2>📋 Generated Content</h2>
+
+<div class="output-box">
+<h3>🎤 Reel Script</h3>
+<div id="script">Your script will appear here...</div>
+<button class="copy" onclick="copyText('script')">Copy</button>
+</div>
+
+<div class="output-box">
+<h3>🖼️ Image Prompt</h3>
+<div id="imagePrompt">Your image prompt will appear here...</div>
+<button class="copy" onclick="copyText('imagePrompt')">Copy</button>
+</div>
+
+<div class="output-box">
+<h3>🎥 Video Prompt</h3>
+<div id="videoPrompt">Your video prompt will appear here...</div>
+<button class="copy" onclick="copyText('videoPrompt')">Copy</button>
+</div>
+
+<div class="output-box">
+<h3>🔥 Title</h3>
+<div id="title">Your title will appear here...</div>
+<button class="copy" onclick="copyText('title')">Copy</button>
+</div>
+
+<div class="output-box">
+<h3>📝 Description</h3>
+<div id="description">Your description will appear here...</div>
+<button class="copy" onclick="copyText('description')">Copy</button>
+</div>
+
+<div class="output-box">
+<h3>#️⃣ Tags</h3>
+<div id="tags">Your tags will appear here...</div>
+<button class="copy" onclick="copyText('tags')">Copy</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+AI Reel Creator • Your Personal Content Studio
+</div>
+
+
+<script>
+
+function generateReel(){
+
+const topic=document.getElementById("topic").value.trim();
+const character=document.getElementById("character").value.trim();
+const platform=document.getElementById("platform").value;
+const duration=document.getElementById("duration").value;
+const language=document.getElementById("language").value;
+const style=document.getElementById("style").value;
+const extra=document.getElementById("extra").value.trim();
+
+if(!topic){
+  alert("Please enter a Reel Topic.");
+  return;
+}
+
+const mainCharacter =
+character || "cinematic AI creator";
+
+const script =
+
+"HOOK: " +
+topic +
+" — but there is something you don't know yet...\n\n" +
+
+"SCENE 1: " +
+mainCharacter +
+" appears in a cinematic environment related to the topic.\n\n" +
+
+"SCENE 2: The camera slowly moves closer while the main subject interacts with the environment.\n\n" +
+
+"SCENE 3: A surprising visual moment reveals the most interesting part of the story.\n\n" +
+
+"ENDING: Stay till the end and discover the mystery. Follow for more.";
+
+const imagePrompt =
+
+"Create a high-quality cinematic vertical 9:16 image for a social media Reel. " +
+
+"Main subject: " + mainCharacter + ". " +
+
+"Topic: " + topic + ". " +
+
+"Style: " + style + ". " +
+
+"Ultra realistic details, natural lighting, dramatic cinematic composition, " +
+
+"professional photography, realistic environment, depth of field, " +
+
+"high detail, sharp focus, visually attractive, social media viral aesthetic. " +
+
+"Keep the main character consistent throughout the visual story. " +
+
+extra;
+
+const videoPrompt =
+
+"Create a " + duration + " cinematic vertical 9:16 video. " +
+
+"Main subject: " + mainCharacter + ". " +
+
+"Topic: " + topic + ". " +
+
+"Start with a strong visual hook in the first 2 seconds. " +
+
+"Use smooth cinematic camera movement, realistic body movement, " +
+
+"natural facial expressions, realistic environment, dramatic lighting, " +
+
+"subtle motion, professional composition and engaging pacing. " +
+
+"Do not use random scene changes. Keep the same character identity, " +
+
+"costume and visual style throughout the video. " +
+
+"End with a memorable visual moment. " +
+
+extra;
+
+const title =
+
+topic + " 😱 | You Won't Believe What Happens Next!";
+
+const description =
+
+"Discover the mystery behind " + topic + ". " +
+
+"This cinematic Reel is created for " + platform + ". " +
+
+"Watch till the end and follow for more amazing AI-powered content.";
+
+const tags =
+
+"#AIReel #AIVideo #AIContent #Reels #Shorts #ViralReels " +
+
+"#Cinematic #AIContentCreator #" +
+
+topic.replace(/[^a-zA-Z0-9]/g,"") +
+
+" #Trending";
+
+document.getElementById("script").innerText=script;
+document.getElementById("imagePrompt").innerText=imagePrompt;
+document.getElementById("videoPrompt").innerText=videoPrompt;
+document.getElementById("title").innerText=title;
+document.getElementById("description").innerText=description;
+document.getElementById("tags").innerText=tags;
+
+}
+
+function copyText(id){
+
+const text=document.getElementById(id).innerText;
+
+navigator.clipboard.writeText(text).then(function(){
+
+alert("Copied successfully! ✅");
+
+}).catch(function(){
+
+alert("Please select and copy the text.");
+
+});
+
+}
+
+</script>
+
 </body>
 </html>
