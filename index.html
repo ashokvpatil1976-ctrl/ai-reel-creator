@@ -1,8 +1,9 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AI Reel Creator</title>
 
 <style>
@@ -12,40 +13,40 @@
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:linear-gradient(135deg,#f5f7ff,#ffffff);
-  color:#222;
+  font-family:Arial, sans-serif;
+  background:#f5f5f5;
+  color:#171717;
 }
 
 .header{
-  background:#111827;
+  background:linear-gradient(135deg,#111827,#020617);
   color:white;
-  padding:25px 20px;
+  padding:28px 20px;
   text-align:center;
 }
 
 .header h1{
   margin:0;
-  font-size:30px;
+  font-size:32px;
 }
 
 .header p{
   margin:8px 0 0;
-  color:#cbd5e1;
+  color:#d1d5db;
 }
 
 .container{
-  max-width:850px;
-  margin:25px auto;
-  padding:20px;
+  max-width:900px;
+  margin:30px auto;
+  padding:0 18px;
 }
 
 .card{
   background:white;
   padding:25px;
   border-radius:18px;
-  box-shadow:0 8px 30px rgba(0,0,0,.08);
-  margin-bottom:20px;
+  box-shadow:0 5px 25px rgba(0,0,0,.08);
+  margin-bottom:25px;
 }
 
 h2{
@@ -55,90 +56,125 @@ h2{
 label{
   display:block;
   font-weight:bold;
-  margin-top:15px;
-  margin-bottom:7px;
+  margin:18px 0 8px;
 }
 
-input,select,textarea{
+input,
+textarea,
+select{
   width:100%;
-  padding:13px;
+  padding:14px;
   border:1px solid #d1d5db;
   border-radius:10px;
   font-size:16px;
+  outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+  border-color:#111827;
 }
 
 textarea{
-  min-height:90px;
+  min-height:120px;
   resize:vertical;
 }
 
 .row{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-button{
-  border:0;
-  border-radius:10px;
-  padding:14px 18px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+  gap:18px;
 }
 
 .generate{
   width:100%;
-  margin-top:20px;
+  margin-top:22px;
+  padding:17px;
+  border:0;
+  border-radius:12px;
   background:#111827;
   color:white;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .generate:hover{
-  background:#374151;
+  background:#000;
+}
+
+.result{
+  background:white;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:18px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+.result h3{
+  margin-top:0;
+  font-size:20px;
 }
 
 .output{
-  margin-top:15px;
-}
-
-.output-box{
+  white-space:pre-wrap;
+  line-height:1.65;
   background:#f8fafc;
-  border:1px solid #e2e8f0;
-  border-radius:12px;
-  padding:15px;
-  margin-bottom:15px;
-}
-
-.output-box h3{
-  margin-top:0;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:16px;
 }
 
 .copy{
+  margin-top:12px;
+  padding:9px 16px;
+  border:0;
+  border-radius:8px;
   background:#e5e7eb;
-  color:#111827;
-  padding:8px 12px;
-  font-size:14px;
-  margin-top:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.copy:hover{
+  background:#d1d5db;
+}
+
+.hidden{
+  display:none;
+}
+
+.error{
+  background:#fee2e2;
+  color:#991b1b;
+  padding:13px;
+  border-radius:10px;
+  margin-top:15px;
+  display:none;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+  padding:13px;
+  border-radius:10px;
+  margin-top:15px;
+  display:none;
 }
 
 .footer{
   text-align:center;
-  padding:25px;
-  color:#64748b;
+  padding:30px;
+  color:#6b7280;
 }
 
-@media(max-width:650px){
+@media(max-width:700px){
   .row{
     grid-template-columns:1fr;
   }
 
-  .container{
-    padding:12px;
-  }
-
-  .card{
-    padding:18px;
+  .header h1{
+    font-size:26px;
   }
 }
 </style>
@@ -158,31 +194,36 @@ button{
 <h2>🚀 Create Your Reel</h2>
 
 <label>Reel Topic</label>
-<input id="topic" placeholder="Example: Mysterious fort at midnight">
+<input
+  id="topic"
+  type="text"
+  placeholder="Example: Sinhagad fort hidden mystery"
+/>
 
 <label>Character / Main Subject</label>
-<input id="character" placeholder="Example: Beautiful AI female creator">
+<input
+  id="character"
+  type="text"
+  placeholder="Example: Indian female AI creator"
+/>
 
 <div class="row">
 
 <div>
 <label>Platform</label>
 <select id="platform">
-<option>Instagram</option>
-<option>YouTube Shorts</option>
-<option>Facebook Reels</option>
-<option>YouTube</option>
+  <option>Instagram</option>
+  <option>YouTube Shorts</option>
+  <option>Facebook Reels</option>
 </select>
 </div>
 
 <div>
 <label>Duration</label>
 <select id="duration">
-<option>15 seconds</option>
-<option>20 seconds</option>
-<option>30 seconds</option>
-<option>45 seconds</option>
-<option>60 seconds</option>
+  <option value="15">15 seconds</option>
+  <option value="30">30 seconds</option>
+  <option value="60">60 seconds</option>
 </select>
 </div>
 
@@ -193,76 +234,88 @@ button{
 <div>
 <label>Language</label>
 <select id="language">
-<option>Marathi</option>
-<option>Hindi</option>
-<option>English</option>
-<option>Marathi + English</option>
-<option>Hindi + English</option>
+  <option value="Marathi">Marathi</option>
+  <option value="Hindi">Hindi</option>
+  <option value="English">English</option>
 </select>
 </div>
 
 <div>
 <label>Style</label>
 <select id="style">
-<option>Cinematic</option>
-<option>Mystery</option>
-<option>Viral</option>
-<option>Luxury</option>
-<option>Travel</option>
-<option>Dance</option>
-<option>Historical</option>
+  <option>Cinematic</option>
+  <option>Mystery</option>
+  <option>Documentary</option>
+  <option>Trending</option>
+  <option>Emotional</option>
+  <option>Historical</option>
 </select>
 </div>
 
 </div>
 
 <label>Extra Instructions</label>
-<textarea id="extra" placeholder="Example: Strong hook, cinematic visuals, no presenter face"></textarea>
 
-<button class="generate" onclick="generateReel()">
-✨ GENERATE AI REEL CONTENT
+<textarea
+id="extra"
+placeholder="Example: Strong hook, cinematic visuals, no presenter face, realistic visuals"
+></textarea>
+
+<div id="error" class="error"></div>
+<div id="success" class="success"></div>
+
+<button class="generate" onclick="generateContent()">
+  ✨ GENERATE AI REEL CONTENT
 </button>
 
 </div>
 
 
-<div class="card output">
+<div id="results" class="hidden">
 
+<div class="card">
 <h2>📋 Generated Content</h2>
+</div>
 
-<div class="output-box">
+
+<div class="result">
 <h3>🎤 Reel Script</h3>
-<div id="script">Your script will appear here...</div>
+<div id="script" class="output"></div>
 <button class="copy" onclick="copyText('script')">Copy</button>
 </div>
 
-<div class="output-box">
+
+<div class="result">
 <h3>🖼️ Image Prompt</h3>
-<div id="imagePrompt">Your image prompt will appear here...</div>
+<div id="imagePrompt" class="output"></div>
 <button class="copy" onclick="copyText('imagePrompt')">Copy</button>
 </div>
 
-<div class="output-box">
-<h3>🎥 Video Prompt</h3>
-<div id="videoPrompt">Your video prompt will appear here...</div>
+
+<div class="result">
+<h3>🎬 Video Prompt</h3>
+<div id="videoPrompt" class="output"></div>
 <button class="copy" onclick="copyText('videoPrompt')">Copy</button>
 </div>
 
-<div class="output-box">
+
+<div class="result">
 <h3>🔥 Title</h3>
-<div id="title">Your title will appear here...</div>
+<div id="title" class="output"></div>
 <button class="copy" onclick="copyText('title')">Copy</button>
 </div>
 
-<div class="output-box">
+
+<div class="result">
 <h3>📝 Description</h3>
-<div id="description">Your description will appear here...</div>
+<div id="description" class="output"></div>
 <button class="copy" onclick="copyText('description')">Copy</button>
 </div>
 
-<div class="output-box">
+
+<div class="result">
 <h3>#️⃣ Tags</h3>
-<div id="tags">Your tags will appear here...</div>
+<div id="tags" class="output"></div>
 <button class="copy" onclick="copyText('tags')">Copy</button>
 </div>
 
@@ -271,135 +324,381 @@ button{
 </div>
 
 <div class="footer">
-AI Reel Creator • Your Personal Content Studio
+AI Reel Creator • Create original social media content
 </div>
 
 
 <script>
 
-function generateReel(){
-
-const topic=document.getElementById("topic").value.trim();
-const character=document.getElementById("character").value.trim();
-const platform=document.getElementById("platform").value;
-const duration=document.getElementById("duration").value;
-const language=document.getElementById("language").value;
-const style=document.getElementById("style").value;
-const extra=document.getElementById("extra").value.trim();
-
-if(!topic){
-  alert("Please enter a Reel Topic.");
-  return;
+function clean(value){
+  return value.trim();
 }
 
-const mainCharacter =
-character || "cinematic AI creator";
 
-const script =
+function generateContent(){
 
-"HOOK: " +
-topic +
-" — but there is something you don't know yet...\n\n" +
+  const topic = clean(document.getElementById("topic").value);
+  const character = clean(document.getElementById("character").value)
+    || "Indian female AI creator";
 
-"SCENE 1: " +
-mainCharacter +
-" appears in a cinematic environment related to the topic.\n\n" +
+  const platform = document.getElementById("platform").value;
+  const duration = document.getElementById("duration").value;
+  const language = document.getElementById("language").value;
+  const style = document.getElementById("style").value;
+  const extra = clean(document.getElementById("extra").value);
 
-"SCENE 2: The camera slowly moves closer while the main subject interacts with the environment.\n\n" +
+  const error = document.getElementById("error");
+  const success = document.getElementById("success");
 
-"SCENE 3: A surprising visual moment reveals the most interesting part of the story.\n\n" +
+  error.style.display="none";
+  success.style.display="none";
 
-"ENDING: Stay till the end and discover the mystery. Follow for more.";
+  if(!topic){
 
-const imagePrompt =
+    error.innerText="Please enter a Reel Topic.";
+    error.style.display="block";
 
-"Create a high-quality cinematic vertical 9:16 image for a social media Reel. " +
+    document.getElementById("topic").focus();
 
-"Main subject: " + mainCharacter + ". " +
+    return;
+  }
 
-"Topic: " + topic + ". " +
 
-"Style: " + style + ". " +
+  let script = "";
+  let title = "";
+  let description = "";
+  let tags = "";
 
-"Ultra realistic details, natural lighting, dramatic cinematic composition, " +
 
-"professional photography, realistic environment, depth of field, " +
+  /* =========================
+     MARATHI
+  ========================= */
 
-"high detail, sharp focus, visually attractive, social media viral aesthetic. " +
+  if(language === "Marathi"){
 
-"Keep the main character consistent throughout the visual story. " +
+    if(duration === "15"){
 
-extra;
+      script =
+`HOOK:
+"${topic} बद्दल तुम्हाला हे माहित आहे का?"
 
-const videoPrompt =
+VOICEOVER:
+"${topic} मागे एक अशी गोष्ट दडलेली आहे, जी अनेकांना अजूनही माहित नाही.
 
-"Create a " + duration + " cinematic vertical 9:16 video. " +
+या ठिकाणचा हा रहस्यमय भाग पाहिल्यावर तुम्हालाही प्रश्न पडेल — यामागचं खरं रहस्य काय आहे?
 
-"Main subject: " + mainCharacter + ". " +
+शेवटपर्यंत पाहा आणि तुमचं मत कमेंटमध्ये सांगा."
 
-"Topic: " + topic + ". " +
+ENDING:
+"अशाच रहस्यमय गोष्टींसाठी Follow करा."`;
 
-"Start with a strong visual hook in the first 2 seconds. " +
+    }else if(duration === "30"){
 
-"Use smooth cinematic camera movement, realistic body movement, " +
+      script =
+`HOOK:
+"${topic} बद्दलची ही गोष्ट तुम्ही कदाचित पहिल्यांदाच ऐकत असाल!"
 
-"natural facial expressions, realistic environment, dramatic lighting, " +
+SCENE 1:
+कॅमेरा ${topic} च्या वातावरणाचा cinematic establishing shot दाखवतो.
 
-"subtle motion, professional composition and engaging pacing. " +
+VOICEOVER:
+"${topic} दिसायला साधं वाटतं... पण यामागे एक रंजक रहस्य लपलेलं आहे."
 
-"Do not use random scene changes. Keep the same character identity, " +
+SCENE 2:
+${character} आजूबाजूचा परिसर काळजीपूर्वक पाहतो/पाहते.
 
-"costume and visual style throughout the video. " +
+VOICEOVER:
+"जुन्या खुणा, शांत वातावरण आणि काही अनोखे संकेत या कथेला आणखी गूढ बनवतात."
 
-"End with a memorable visual moment. " +
+SCENE 3:
+कॅमेरा एका महत्त्वाच्या रहस्यमय detail वर हळूहळू zoom करतो.
 
-extra;
+VOICEOVER:
+"आणि इथेच या संपूर्ण गोष्टीचा सर्वात मोठा प्रश्न उभा राहतो..."
 
-const title =
+ENDING:
+"तुम्हाला यामागचं खरं कारण माहित आहे का? Comment करा आणि Follow करा."`;
 
-topic + " 😱 | You Won't Believe What Happens Next!";
+    }else{
 
-const description =
+      script =
+`HOOK:
+"${topic} ची ही कथा शेवटपर्यंत ऐका... कारण शेवटी एक मोठं रहस्य समोर येणार आहे."
 
-"Discover the mystery behind " + topic + ". " +
+INTRO:
+"${topic} हे फक्त एक ठिकाण/घटना नाही. त्याच्याशी जोडलेल्या काही गोष्टी आजही लोकांच्या चर्चेचा विषय आहेत."
 
-"This cinematic Reel is created for " + platform + ". " +
+STORY:
+"या कथेत आपल्याला काही महत्त्वाचे संकेत दिसतात. वातावरण शांत असलं तरी प्रत्येक detail काहीतरी वेगळं सांगत असल्यासारखं वाटतं."
 
-"Watch till the end and follow for more amazing AI-powered content.";
+DISCOVERY:
+"${character} त्या परिसरातील एक महत्त्वाची खूण पाहतो/पाहते आणि कॅमेरा त्या detail वर focus करतो."
 
-const tags =
+REVEAL:
+"याच ठिकाणी या रहस्याला एक नवीन दिशा मिळते. मात्र हे खरं आहे की केवळ एक आख्यायिका — हा प्रश्न अजूनही कायम आहे."
 
-"#AIReel #AIVideo #AIContent #Reels #Shorts #ViralReels " +
+ENDING:
+"तुम्हाला काय वाटतं? तुमचं मत Comment मध्ये लिहा आणि अशाच कथांसाठी Follow करा."`;
+    }
 
-"#Cinematic #AIContentCreator #" +
 
-topic.replace(/[^a-zA-Z0-9]/g,"") +
+    title = `😱 ${topic} मागचं रहस्य! हे तुम्हाला माहित आहे का?`;
 
-" #Trending";
+    description =
+`${topic} बद्दलची ही रहस्यमय आणि cinematic कथा शेवटपर्यंत पाहा.
 
-document.getElementById("script").innerText=script;
-document.getElementById("imagePrompt").innerText=imagePrompt;
-document.getElementById("videoPrompt").innerText=videoPrompt;
-document.getElementById("title").innerText=title;
-document.getElementById("description").innerText=description;
-document.getElementById("tags").innerText=tags;
+या Reel मध्ये ${topic} शी संबंधित एक रंजक रहस्य आणि महत्त्वाचे संकेत पाहायला मिळतील.
 
+तुम्हाला ही गोष्ट माहित होती का? Comment मध्ये सांगा.
+
+Follow करा अशाच नवीन रहस्यमय आणि cinematic Reels साठी.
+
+#reels #marathi #mystery`;
+
+    tags =
+`#Marathi #MarathiReels #Mystery #MysteryReels #MarathiContent #Cinematic #AIReels #AIContent #ViralReels #ExplorePage`;
+
+  }
+
+
+  /* =========================
+     HINDI
+  ========================= */
+
+  else if(language === "Hindi"){
+
+    script =
+`HOOK:
+"${topic} से जुड़ा ये रहस्य शायद आपने पहले कभी नहीं सुना होगा!"
+
+VOICEOVER:
+"${topic} देखने में जितना सामान्य लगता है, इसकी कहानी उतनी ही रहस्यमयी है।
+
+इस जगह से जुड़े कुछ ऐसे संकेत हैं, जो आज भी लोगों के मन में सवाल पैदा करते हैं।
+
+${character} इस रहस्यमयी जगह की एक खास detail को ध्यान से देखता/देखती है।
+
+और यहीं से कहानी एक नया मोड़ लेती है।
+
+आपको क्या लगता है, इसके पीछे असली वजह क्या है?
+
+Comment में बताइए और ऐसी ही रहस्यमयी कहानियों के लिए Follow करें।`;
+
+    title =
+`😱 ${topic} का रहस्य! असली कहानी क्या है?`;
+
+    description =
+`${topic} से जुड़ी एक रहस्यमयी और cinematic कहानी।
+
+इस Reel को अंत तक देखिए और बताइए कि आपको इसके पीछे की असली वजह क्या लगती है।
+
+Follow for more mystery stories.
+
+#reels #mystery #hindireels #viralreels`;
+
+    tags =
+`#Hindi #HindiReels #Mystery #MysteryStory #Cinematic #AIReels #ViralReels #Shorts #Trending`;
+
+  }
+
+
+  /* =========================
+     ENGLISH
+  ========================= */
+
+  else{
+
+    script =
+`HOOK:
+"You probably don't know this hidden story about ${topic}."
+
+VOICEOVER:
+"${topic} may look ordinary at first, but there is a fascinating mystery connected to it.
+
+${character} explores the environment and notices a strange detail.
+
+The camera slowly moves closer as the mystery becomes more interesting.
+
+But the biggest question is still unanswered...
+
+What is the real story behind ${topic}?
+
+Watch till the end, share your theory in the comments, and follow for more mystery stories."`;
+
+    title =
+`The Hidden Mystery of ${topic} 😱`;
+
+    description =
+`A cinematic mystery story about ${topic}.
+
+Watch until the end and tell us what you think is really behind this mystery.
+
+Follow for more cinematic mystery content.
+
+#reels #mystery #cinematic #AIReels`;
+
+    tags =
+`#Mystery #Cinematic #AIReels #AIContent #ViralReels #Shorts #MysteryStory #Trending #Explore`;
+
+  }
+
+
+  /* =========================
+     IMAGE PROMPT
+  ========================= */
+
+  const imagePrompt =
+`Create a high-quality cinematic vertical 9:16 image for ${platform}.
+
+Main subject: ${character}
+
+Topic: ${topic}
+
+Style: ${style}
+
+Show the main subject naturally interacting with an environment directly related to "${topic}".
+
+Ultra-realistic details, realistic human proportions, natural skin texture, realistic clothing, professional photography, cinematic lighting, atmospheric depth, dramatic composition, realistic environment, high detail, sharp focus, depth of field.
+
+The same character identity must remain consistent throughout the visual story.
+
+Keep the same face, hairstyle, body proportions and visual identity.
+
+No presenter-style talking head.
+
+No text, no subtitles, no watermark, no logo.
+
+Extra instructions: ${extra || "Strong visual hook, cinematic visuals, realistic environment, no presenter face."}`;
+
+
+  /* =========================
+     VIDEO PROMPT
+  ========================= */
+
+  const videoPrompt =
+`Create a ${duration}-second cinematic vertical 9:16 video for ${platform}.
+
+Main subject: ${character}
+
+Topic: ${topic}
+
+Style: ${style}
+
+Start with a strong visual hook during the first 2 seconds.
+
+Show the main subject naturally exploring or interacting with an environment directly related to "${topic}".
+
+Use smooth cinematic camera movement, realistic body movement, natural expressions, realistic physics, atmospheric lighting, professional composition and engaging pacing.
+
+Build visual curiosity around the topic.
+
+Do not use random unrelated scene changes.
+
+Maintain the exact same character identity, face, hairstyle, costume style and visual appearance throughout the video.
+
+Keep the environment visually consistent.
+
+No presenter talking-head shot.
+
+No text overlays, no subtitles, no watermark, no logo.
+
+End with a memorable visual reveal connected to the topic.
+
+Extra instructions: ${extra || "Strong hook, cinematic visuals, realistic movement, no presenter face."}`;
+
+
+  /* =========================
+     STYLE MODIFIERS
+  ========================= */
+
+  if(style === "Mystery"){
+    document.getElementById("imagePrompt").innerText +=
+      "\nMystery atmosphere, subtle fog, suspenseful mood, hidden clues, dramatic shadows.";
+  }
+
+  if(style === "Historical"){
+    document.getElementById("imagePrompt").innerText +=
+      "\nHistorically believable architecture, authentic period details, realistic historical atmosphere.";
+  }
+
+  if(style === "Documentary"){
+    document.getElementById("imagePrompt").innerText +=
+      "\nReal documentary photography feeling, natural camera behavior, believable real-world details.";
+  }
+
+
+  /* =========================
+     DISPLAY
+  ========================= */
+
+  document.getElementById("script").innerText = script;
+
+  document.getElementById("imagePrompt").innerText =
+    imagePrompt;
+
+  document.getElementById("videoPrompt").innerText =
+    videoPrompt;
+
+  document.getElementById("title").innerText =
+    title;
+
+  document.getElementById("description").innerText =
+    description;
+
+  document.getElementById("tags").innerText =
+    tags;
+
+
+  document.getElementById("results").classList.remove("hidden");
+
+  success.innerText =
+    "✅ AI Reel content generated successfully!";
+
+  success.style.display="block";
+
+  document.getElementById("results")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
 }
+
+
+/* =========================
+   COPY FUNCTION
+========================= */
 
 function copyText(id){
 
-const text=document.getElementById(id).innerText;
+  const text =
+    document.getElementById(id).innerText;
 
-navigator.clipboard.writeText(text).then(function(){
+  navigator.clipboard.writeText(text)
+    .then(function(){
 
-alert("Copied successfully! ✅");
+      const buttons =
+        document.querySelectorAll(".copy");
 
-}).catch(function(){
+      alert("Copied successfully!");
 
-alert("Please select and copy the text.");
+    })
+    .catch(function(){
 
-});
+      const area =
+        document.createElement("textarea");
 
+      area.value=text;
+
+      document.body.appendChild(area);
+
+      area.select();
+
+      document.execCommand("copy");
+
+      document.body.removeChild(area);
+
+      alert("Copied successfully!");
+
+    });
 }
 
 </script>
